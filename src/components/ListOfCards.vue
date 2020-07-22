@@ -7,14 +7,15 @@
         outlined
     >
         <v-card-title>
-            {{ list }}}
+            {{ list }}
         </v-card-title>
-
-        <Card 
-            v-for="(card, index) in cards"
-            :card="card"
-            :key="index"
-        ></Card>
+        <draggable :group="cards">
+            <Card 
+                v-for="(card, index) in cards"
+                :card="card"
+                :key="index"
+            ></Card>
+        </draggable>
 
         <v-divider class="mx-4"></v-divider>
         <v-card-text>
@@ -29,10 +30,13 @@
     </v-card>
 </template>
 <script>
+import draggable from 'vuedraggable'
 import Card from './Card'
+
 export default {
     name: 'ListOfCards',
     components: {
+        draggable,
         Card
     },
     props: {

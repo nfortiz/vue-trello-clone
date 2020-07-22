@@ -1,6 +1,7 @@
 # trello-clone
-
+A trello clone build with vue, vuex, vue-router and vuetify. 
 ## Project setup
+Install all project dependencies.
 ```
 npm install
 ```
@@ -19,6 +20,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
