@@ -7,11 +7,11 @@
         outlined
     >
         <v-card-title>
-            {{ list }}
+            {{ list.name }}
         </v-card-title>
-        <draggable :group="cards">
+        <draggable group="cards" :list="list.cards">
             <Card 
-                v-for="(card, index) in cards"
+                v-for="(card, index) in list.cards"
                 :card="card"
                 :key="index"
             ></Card>
@@ -40,16 +40,12 @@ export default {
         Card
     },
     props: {
-        list: String
-    },
-    data: function() {
-        return {
-            cards: []
-        }
+        list: Object
     },
     methods: {
         addCard: function(event) {
-            this.$data.cards.push(event.target.value)
+            const listId = this.list.name
+            this.$store.commit('addCardToList', { newCard: event.target.value, listId: listId })
         }
     }
 }

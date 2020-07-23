@@ -1,8 +1,11 @@
 <template>
-    <div
-        class="d-flex flex-row align-start my-5 mx-5"
-    >
-        <draggable v-model="lists" group="lists" class="d-flex flex-row flex-nowrap align-start">
+    <div class="d-flex flex-row align-start my-5 mx-5">
+        <draggable 
+            v-model="lists" 
+            group="lists" 
+            class="d-flex flex-row flex-nowrap align-start"
+            @change="handleChange"
+        >
             <ListOfCards  v-for="(list, index) in lists" :key="index" :list="list"/>
         </draggable>
         <v-form v-on:submit.prevent>
@@ -27,12 +30,28 @@ export default {
     },
     data: function() {
         return {
-            lists: []
+            
+        }
+    },
+    computed: {
+        lists: {
+            get: function() {
+                return this.$store.state.board.lists
+            },
+            set: function(value) {
+                this.$store.commit('updateAllList', value)
+            }
         }
     },
     methods: {
         addList: function(event) {
-            this.$data.lists.push(event.target.value)
+            const newList = { name: event.target.value, cards: [] }
+            this.$store.commit('addList', newList)
+        },
+        handleChange: function(event) {
+            if (event.moved) {
+                //this.$store.commit('updateList', event.moved)
+            }
         }
     }
 }
