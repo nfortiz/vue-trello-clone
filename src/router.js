@@ -7,8 +7,8 @@ import Board from './components/Board'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/board', component: Board }
+    { path: '/', component: Board },
+    { path: '/home', component: Home }
     
 ];
 
